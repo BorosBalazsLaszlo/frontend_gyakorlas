@@ -34,25 +34,16 @@ function Products() {
     navigate(`/products/${id}`);
   };
 
-  const addProduct = () => {
-    apiClient
-      .post("/products", product)
-      .then((response) => {
-        switch (response.status) {
-          case 201:
-            console.log("termék létrehozva");
-            break;
-          case 400:
-            console.log("Bad request");
-            break;
-          default:
-            console.log("figyi nem tom");
-        }
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-    window.location.reload();
+  const addProduct = async () => {
+    try{
+      await apiClient.post("/products", product)
+      alert("Sikeres feltöltés!")
+      window.location.reload();
+    }
+    catch (err: any)
+    {
+      alert("Gattyaaa")
+    }
   };
 
   return (
